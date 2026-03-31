@@ -1422,11 +1422,11 @@
       }
 
       .site-header.menu-open {
-        z-index: 90;
+        z-index: 210;
       }
 
       .site-header.menu-open .nav-shell {
-        background: rgba(6, 12, 17, 0.96);
+        background: rgba(6, 12, 17, 0.98);
         border-color: rgba(255,255,255,0.12);
         box-shadow: 0 22px 60px rgba(0,0,0,0.34);
       }
@@ -1442,63 +1442,65 @@
         display: inline-grid;
         place-items: center;
         position: relative;
-        z-index: 92;
+        z-index: 220;
       }
 
       .mobile-backdrop {
         display: block;
         position: fixed;
         inset: 0;
-        background: rgba(3, 8, 12, 0.74);
-        backdrop-filter: blur(10px);
-        -webkit-backdrop-filter: blur(10px);
+        background: rgba(3, 8, 12, 0.82);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
         opacity: 0;
+        visibility: hidden;
         pointer-events: none;
-        transition: opacity 0.28s ease;
-        z-index: 80;
+        transition: opacity 0.28s ease, visibility 0.28s ease;
+        z-index: 190;
       }
 
       .mobile-backdrop.open {
         opacity: 1;
+        visibility: visible;
         pointer-events: auto;
       }
 
       .mobile-menu {
-        z-index: 91;
         position: fixed;
         left: 16px;
         right: 16px;
-        top: calc(env(safe-area-inset-top, 0px) + 92px);
-        bottom: 16px;
-        max-height: none;
+        top: calc(env(safe-area-inset-top, 0px) + 96px);
+        max-height: min(72vh, calc(100vh - 128px));
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
         padding: 14px;
         border-radius: 28px;
         border: 1px solid rgba(255,255,255,0.10);
-        background: linear-gradient(180deg, rgba(5,11,17,0.985), rgba(4,9,14,0.97));
+        background: linear-gradient(180deg, rgba(5,11,17,0.995), rgba(4,9,14,0.985));
         backdrop-filter: blur(28px) saturate(155%);
-        display: grid;
-        grid-auto-rows: minmax(56px, auto);
+        display: flex;
+        flex-direction: column;
         gap: 12px;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transform: translateY(-12px) scale(0.985);
+        transform: translateY(-10px);
         transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
         box-shadow: 0 30px 80px rgba(0,0,0,0.42);
+        z-index: 205;
       }
 
       .mobile-menu.open {
         opacity: 1;
         visibility: visible;
         pointer-events: auto;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
       }
 
       .mobile-menu a,
       .mobile-menu .btn {
         width: 100%;
+        flex: 0 0 auto;
       }
 
       .mobile-menu a {
@@ -2330,20 +2332,50 @@
 
     observedSections.forEach(section => sectionObserver.observe(section));
 
+    const openMobileMenu = () => {
+      mobileMenu.classList.add('open');
+      mobileBackdrop?.classList.add('open');
+      document.body.classList.add('menu-open');
+      header.classList.add('menu-open');
+      mobileToggle.setAttribute('aria-expanded', 'true');
+      mobileToggle.setAttribute('aria-label', 'Zamknij menu');
+      mobileToggle.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+    };
+
+    const closeMobileMenu = () => {
+      mobileMenu.classList.remove('open');
+      mobileBackdrop?.classList.remove('open');
+      document.body.classList.remove('menu-open');
+      header.classList.remove('menu-open');
+      mobileToggle.setAttribute('aria-expanded', 'false');
+      mobileToggle.setAttribute('aria-label', 'Otwórz menu');
+      mobileToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    };
+
     mobileToggle?.addEventListener('click', () => {
-      const isOpen = mobileMenu.classList.toggle('open');
-      mobileToggle.setAttribute('aria-expanded', String(isOpen));
-      mobileToggle.innerHTML = isOpen
-        ? '<i class="fa-solid fa-xmark"></i>'
-        : '<i class="fa-solid fa-bars"></i>';
+      const isOpen = mobileMenu.classList.contains('open');
+      if (isOpen) closeMobileMenu();
+      else openMobileMenu();
+    });
+
+    mobileBackdrop?.addEventListener('click', closeMobileMenu);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && mobileMenu.classList.contains('open')) {
+        closeMobileMenu();
+      }
     });
 
     mobileMenuLinks.forEach(link => {
       link.addEventListener('click', () => {
-        mobileMenu.classList.remove('open');
-        mobileToggle.setAttribute('aria-expanded', 'false');
-        mobileToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+        closeMobileMenu();
       });
+    });
+
+    window.addEventListener('resize', () => {
+      if (window.innerWidth > 860 && mobileMenu.classList.contains('open')) {
+        closeMobileMenu();
+      }
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
