@@ -12,7 +12,9 @@
   <meta property="og:description" content="Projektowanie i wykonawstwo instalacji PV, farm fotowoltaicznych oraz sieci SN i nn." />
   <meta property="og:image" content="assets/emergy-one-logo-black.png" />
   <meta property="og:locale" content="pl_PL" />
-  <link rel="icon" type="image/png" href="assets/emergy-one-logo-black.png" />
+  <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon.png" />
+  <link rel="apple-touch-icon" href="assets/favicon.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -131,23 +133,6 @@
       transition: transform 0.35s ease, background 0.35s ease, border-color 0.35s ease;
     }
 
-    .site-header::after {
-      content: '';
-      position: fixed;
-      inset: 0;
-      background: rgba(2, 7, 11, 0.68);
-      backdrop-filter: blur(12px);
-      opacity: 0;
-      pointer-events: none;
-      transition: opacity 0.25s ease;
-      z-index: 1;
-    }
-
-    .site-header.menu-open::after {
-      opacity: 1;
-      pointer-events: auto;
-    }
-
     .site-header.scrolled .nav-shell {
       background: rgba(6, 12, 17, 0.84);
       border-color: rgba(255,255,255,0.12);
@@ -170,7 +155,6 @@
       gap: 18px;
       box-shadow: 0 16px 44px rgba(0,0,0,0.24);
       overflow: hidden;
-      z-index: 2;
     }
 
     .nav-shell::before {
@@ -289,6 +273,10 @@
     }
 
     .mobile-menu {
+      display: none;
+    }
+
+    .mobile-backdrop {
       display: none;
     }
 
@@ -1430,6 +1418,17 @@
 
       body.menu-open {
         overflow: hidden;
+        touch-action: none;
+      }
+
+      .site-header.menu-open {
+        z-index: 90;
+      }
+
+      .site-header.menu-open .nav-shell {
+        background: rgba(6, 12, 17, 0.96);
+        border-color: rgba(255,255,255,0.12);
+        box-shadow: 0 22px 60px rgba(0,0,0,0.34);
       }
 
       .nav-shell {
@@ -1443,34 +1442,56 @@
         display: inline-grid;
         place-items: center;
         position: relative;
-        z-index: 4;
+        z-index: 92;
+      }
+
+      .mobile-backdrop {
+        display: block;
+        position: fixed;
+        inset: 0;
+        background: rgba(3, 8, 12, 0.74);
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.28s ease;
+        z-index: 80;
+      }
+
+      .mobile-backdrop.open {
+        opacity: 1;
+        pointer-events: auto;
       }
 
       .mobile-menu {
-        z-index: 4;
+        z-index: 91;
         position: fixed;
         left: 16px;
         right: 16px;
-        top: calc(env(safe-area-inset-top, 0px) + 96px);
-        max-height: calc(100svh - env(safe-area-inset-top, 0px) - 112px);
+        top: calc(env(safe-area-inset-top, 0px) + 92px);
+        bottom: 16px;
+        max-height: none;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
-        padding: 16px;
+        padding: 14px;
         border-radius: 28px;
         border: 1px solid rgba(255,255,255,0.10);
-        background: linear-gradient(180deg, rgba(6,12,18,0.98), rgba(4,9,14,0.96));
+        background: linear-gradient(180deg, rgba(5,11,17,0.985), rgba(4,9,14,0.97));
         backdrop-filter: blur(28px) saturate(155%);
         display: grid;
+        grid-auto-rows: minmax(56px, auto);
         gap: 12px;
         opacity: 0;
+        visibility: hidden;
         pointer-events: none;
-        transform: translateY(-10px) scale(0.985);
-        transition: opacity 0.25s ease, transform 0.25s ease;
+        transform: translateY(-12px) scale(0.985);
+        transition: opacity 0.28s ease, transform 0.28s ease, visibility 0.28s ease;
         box-shadow: 0 30px 80px rgba(0,0,0,0.42);
       }
 
       .mobile-menu.open {
         opacity: 1;
+        visibility: visible;
         pointer-events: auto;
         transform: translateY(0) scale(1);
       }
@@ -1483,14 +1504,15 @@
       .mobile-menu a {
         display: flex;
         align-items: center;
-        justify-content: flex-start;
-        min-height: 56px;
+        justify-content: center;
+        text-align: center;
+        min-height: 58px;
         padding: 0 18px;
-        border-radius: 18px;
+        border-radius: 20px;
         background: rgba(255,255,255,0.04);
-        border: 1px solid rgba(255,255,255,0.06);
-        color: rgba(255,255,255,0.90);
-        font-size: 1.02rem;
+        border: 1px solid rgba(255,255,255,0.08);
+        color: rgba(255,255,255,0.94);
+        font-size: 1.04rem;
         font-weight: 500;
         letter-spacing: -0.01em;
       }
@@ -1501,7 +1523,9 @@
       }
 
       .mobile-menu .btn {
-        margin-top: 4px;
+        margin-top: 2px;
+        min-height: 58px;
+        border-radius: 20px;
       }
 
       .stats-grid,
@@ -1524,7 +1548,7 @@
       }
     }
 
-@media (max-width: 640px) {
+    @media (max-width: 640px) {
       .section { padding: 90px 0; }
       .hero-copy h1 { letter-spacing: -0.06em; }
       .hero-copy p { font-size: 1rem; }
@@ -1622,6 +1646,7 @@
       </div>
     </div>
   </header>
+  <button class="mobile-backdrop" id="mobileBackdrop" aria-label="Zamknij menu" aria-hidden="true"></button>
 
   <main id="top">
     <section class="hero section">
@@ -2269,6 +2294,7 @@
     const header = document.getElementById('siteHeader');
     const mobileToggle = document.getElementById('mobileToggle');
     const mobileMenu = document.getElementById('mobileMenu');
+    const mobileBackdrop = document.getElementById('mobileBackdrop');
     const desktopMenuLinks = document.querySelectorAll('.nav-links a');
     const mobileMenuLinks = mobileMenu.querySelectorAll('a');
     const allMenuLinks = [...desktopMenuLinks, ...mobileMenuLinks];
@@ -2304,46 +2330,20 @@
 
     observedSections.forEach(section => sectionObserver.observe(section));
 
-    const syncMobileMenuState = (isOpen) => {
-      mobileMenu.classList.toggle('open', isOpen);
-      mobileToggle?.setAttribute('aria-expanded', String(isOpen));
-      header.classList.toggle('menu-open', isOpen);
-      document.body.classList.toggle('menu-open', isOpen);
-      if (mobileToggle) {
-        mobileToggle.innerHTML = isOpen
-          ? '<i class="fa-solid fa-xmark"></i>'
-          : '<i class="fa-solid fa-bars"></i>';
-      }
-    };
-
-    mobileToggle?.addEventListener('click', (event) => {
-      event.stopPropagation();
-      syncMobileMenuState(!mobileMenu.classList.contains('open'));
+    mobileToggle?.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileToggle.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
     });
 
     mobileMenuLinks.forEach(link => {
       link.addEventListener('click', () => {
-        syncMobileMenuState(false);
+        mobileMenu.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
       });
-    });
-
-    document.addEventListener('click', (event) => {
-      if (!mobileMenu.classList.contains('open')) return;
-      if (window.innerWidth > 860) return;
-      if (header.contains(event.target)) return;
-      syncMobileMenuState(false);
-    });
-
-    window.addEventListener('resize', () => {
-      if (window.innerWidth > 860) {
-        syncMobileMenuState(false);
-      }
-    });
-
-    document.addEventListener('keydown', (event) => {
-      if (event.key === 'Escape') {
-        syncMobileMenuState(false);
-      }
     });
 
     document.getElementById('year').textContent = new Date().getFullYear();
