@@ -1,0 +1,2596 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Emergy One — Fotowoltaika, farmy PV, sieci SN i nn</title>
+  <meta name="description" content="Emergy One projektuje i realizuje instalacje fotowoltaiczne, farmy PV oraz infrastrukturę elektroenergetyczną SN i nn. Kompleksowa dokumentacja, wykonawstwo, odbiory i serwis." />
+  <meta name="keywords" content="Emergy One, fotowoltaika, farmy PV, sieci SN, sieci nn, stacje transformatorowe, projekty elektryczne, audyty energetyczne, Komorniki" />
+  <meta name="theme-color" content="#081016" />
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Emergy One — Premium Energy & PV Solutions" />
+  <meta property="og:description" content="Projektowanie i wykonawstwo instalacji PV, farm fotowoltaicznych oraz sieci SN i nn." />
+  <meta property="og:image" content="assets/emergy-one-logo-black.png" />
+  <meta property="og:locale" content="pl_PL" />
+  <link rel="icon" type="image/png" href="assets/emergy-one-logo-black.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    :root {
+      --bg: #04070b;
+      --bg-soft: #081016;
+      --bg-card: rgba(15, 24, 32, 0.72);
+      --bg-card-strong: rgba(9, 15, 21, 0.92);
+      --line: rgba(255,255,255,0.08);
+      --line-strong: rgba(255,255,255,0.18);
+      --text: #f6f8fa;
+      --muted: rgba(246,248,250,0.72);
+      --green: #34d25b;
+      --green-2: #9be316;
+      --gold: #efc15a;
+      --blue: #81e4ff;
+      --shadow: 0 30px 120px rgba(0,0,0,0.48);
+      --radius-xl: 32px;
+      --radius-lg: 24px;
+      --radius-md: 18px;
+      --container: 1240px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      background:
+        radial-gradient(circle at 15% 10%, rgba(52,210,91,0.18), transparent 24%),
+        radial-gradient(circle at 80% 12%, rgba(239,193,90,0.12), transparent 20%),
+        radial-gradient(circle at 50% 100%, rgba(129,228,255,0.08), transparent 30%),
+        linear-gradient(180deg, #03070b 0%, #071018 45%, #03060a 100%);
+      color: var(--text);
+      overflow-x: hidden;
+      position: relative;
+      isolation: isolate;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background:
+        linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
+      background-size: 40px 40px;
+      mask-image: radial-gradient(circle at center, black 38%, transparent 88%);
+      opacity: 0.22;
+      z-index: -2;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { color: inherit; text-decoration: none; }
+    button, input, textarea { font: inherit; }
+
+    .container {
+      width: min(calc(100% - 32px), var(--container));
+      margin: 0 auto;
+    }
+
+    .section {
+      position: relative;
+      padding: 110px 0;
+    }
+
+    .section-title {
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 0.98;
+      letter-spacing: -0.05em;
+      margin: 0 0 18px;
+    }
+
+    .section-subtitle {
+      max-width: 760px;
+      margin: 0;
+      color: var(--muted);
+      font-size: clamp(1rem, 2vw, 1.125rem);
+      line-height: 1.75;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 16px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      color: rgba(255,255,255,0.82);
+      font-size: 0.85rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 22px;
+      backdrop-filter: blur(18px);
+    }
+
+    .eyebrow::before {
+      content: '';
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--green), var(--green-2));
+      box-shadow: 0 0 20px rgba(52,210,91,0.7);
+    }
+
+    .site-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      transition: transform 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+    }
+
+    .site-header.scrolled .nav-shell {
+      background: rgba(8, 16, 22, 0.72);
+      border-color: rgba(255,255,255,0.10);
+      box-shadow: 0 18px 50px rgba(0,0,0,0.30);
+    }
+
+    .nav-shell {
+      width: min(calc(100% - 32px), 1320px);
+      margin: 16px auto 0;
+      padding: 14px 18px;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.06);
+      background: rgba(8, 16, 22, 0.35);
+      backdrop-filter: blur(18px) saturate(140%);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 18px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .brand img {
+      width: 180px;
+      height: auto;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex: 1 1 auto;
+      gap: 22px;
+      color: rgba(255,255,255,0.78);
+      font-size: 0.95rem;
+      white-space: nowrap;
+    }
+
+    .nav-links a {
+      position: relative;
+      transition: color 0.25s ease;
+    }
+
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: -8px;
+      width: 100%;
+      height: 2px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, var(--green), var(--gold));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .nav-links a:hover { color: #fff; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 0 0 auto;
+    }
+
+    .mobile-menu {
+      display: none;
+    }
+
+    .mobile-toggle {
+      display: none;
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      color: #fff;
+    }
+
+    .site-header,
+    main {
+      position: relative;
+      z-index: 1;
+    }
+
+    .btn {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      min-height: 54px;
+      padding: 0 24px;
+      border-radius: 16px;
+      font-weight: 600;
+      border: 1px solid transparent;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, border-color 0.25s ease;
+      cursor: pointer;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      inset: -120% auto auto -40%;
+      width: 55%;
+      height: 300%;
+      background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.05) 28%, rgba(255,255,255,0.38) 50%, rgba(255,255,255,0.06) 72%, transparent 100%);
+      transform: translateX(-180%) rotate(18deg);
+      transition: transform 0.75s ease;
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    .btn:hover::before {
+      transform: translateX(430%) rotate(18deg);
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 18px 44px rgba(0,0,0,0.24);
+    }
+
+    .btn-primary {
+      color: #04120a;
+      background: linear-gradient(135deg, var(--green-2), var(--green));
+      box-shadow: 0 14px 36px rgba(72, 255, 0, 0.16);
+      animation: btnPulse 4.8s ease-in-out infinite;
+    }
+
+    .btn-secondary {
+      color: #fff;
+      background: rgba(255,255,255,0.03);
+      border-color: rgba(255,255,255,0.12);
+      backdrop-filter: blur(14px);
+    }
+
+    .hero {
+      min-height: 100svh;
+      display: grid;
+      align-items: center;
+      padding: 150px 0 70px;
+      overflow: clip;
+    }
+
+    .hero::before,
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: auto;
+      border-radius: 50%;
+      filter: blur(50px);
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .hero::before {
+      width: 420px;
+      height: 420px;
+      right: -80px;
+      top: 80px;
+      background: rgba(52,210,91,0.22);
+      animation: floatGlow 10s ease-in-out infinite;
+    }
+
+    .hero::after {
+      width: 360px;
+      height: 360px;
+      left: -60px;
+      bottom: 80px;
+      background: rgba(239,193,90,0.14);
+      animation: floatGlow 12s ease-in-out infinite reverse;
+    }
+
+    .hero-grid {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: minmax(0, 0.92fr) minmax(420px, 0.98fr);
+      gap: clamp(28px, 3vw, 56px);
+      align-items: start;
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      max-width: 760px;
+      padding-right: clamp(4px, 1.6vw, 24px);
+    }
+
+    .hero-copy h1 {
+      margin: 0;
+      font-size: clamp(2.9rem, 6vw, 5.45rem);
+      line-height: 0.92;
+      letter-spacing: -0.075em;
+      max-width: 7.15ch;
+      text-wrap: balance;
+    }
+
+    .hero-copy h1 .accent {
+      background: linear-gradient(135deg, #ffffff 0%, #c7ffd1 42%, #9be316 100%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      display: inline-block;
+    }
+
+    .hero-copy p {
+      margin: 28px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: clamp(1.05rem, 2vw, 1.2rem);
+      line-height: 1.85;
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 34px;
+    }
+
+    .hero-panel {
+      position: relative;
+      border-radius: 30px;
+      padding: 28px;
+      overflow: hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+      border: 1px solid rgba(255,255,255,0.10);
+      backdrop-filter: blur(24px);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+      z-index: 1;
+    }
+
+    .hero-panel::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(160deg, rgba(155,227,22,0.22), rgba(129,228,255,0.12) 35%, transparent 70%);
+      z-index: -1;
+    }
+
+    .hero-panel .panel-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      color: rgba(255,255,255,0.7);
+      margin-bottom: 22px;
+      font-size: 0.95rem;
+    }
+
+    .chip-row {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .chip {
+      padding: 10px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.8);
+      font-size: 0.85rem;
+    }
+
+    .signal-card {
+      padding: 22px;
+      border-radius: 24px;
+      background: rgba(2, 8, 13, 0.54);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .signal-card + .signal-card { margin-top: 16px; }
+
+    .signal-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .signal-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.96rem;
+    }
+
+    .signal-progress {
+      height: 12px;
+      margin-top: 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .signal-progress span {
+      position: relative;
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: inherit;
+      background: linear-gradient(90deg, var(--green) 0%, #55e36f 30%, #b7ea44 62%, var(--gold) 100%);
+      background-size: 200% 100%;
+      box-shadow: 0 0 25px rgba(52,210,91,0.55);
+      animation: progressGradientFlow 3s linear infinite;
+      overflow: hidden;
+      will-change: width, background-position;
+    }
+
+    .signal-progress span::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 72px;
+      background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.14) 35%, rgba(255,255,255,0.45) 50%, rgba(255,255,255,0.14) 65%, transparent 100%);
+      filter: blur(2px);
+      animation: progressShine 2.4s ease-in-out infinite;
+    }
+
+    #hero-particles {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.72;
+      display: block;
+    }
+
+    .about-grid,
+    .contact-grid,
+    .process-grid,
+    .charts-grid {
+      display: grid;
+      gap: 24px;
+      align-items: start;
+    }
+
+    .about-grid {
+      grid-template-columns: minmax(0, 1.05fr) minmax(320px, 0.95fr);
+      margin-top: 36px;
+    }
+
+    .glass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      padding: 30px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
+
+    .about-text {
+      color: var(--muted);
+      line-height: 1.9;
+      font-size: 1.02rem;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+    }
+
+    .stat-card {
+      padding: 22px;
+      border-radius: 24px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      min-height: 170px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.3s ease, border-color 0.3s ease;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(155,227,22,0.25);
+    }
+
+    .stat-number {
+      font-size: clamp(2rem, 4vw, 3.4rem);
+      font-weight: 800;
+      letter-spacing: -0.06em;
+      line-height: 0.95;
+      margin-bottom: 12px;
+      color: #fff;
+    }
+
+    .stat-label {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.76);
+      line-height: 1.6;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .service-card,
+    .energy-card,
+    .portfolio-card,
+    .process-card,
+    .contact-card {
+      position: relative;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.03));
+      box-shadow: var(--shadow);
+      transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+      transform-style: preserve-3d;
+      isolation: isolate;
+    }
+
+    .service-card:hover,
+    .energy-card:hover,
+    .portfolio-card:hover,
+    .process-card:hover,
+    .contact-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(155,227,22,0.28);
+      box-shadow: 0 34px 90px rgba(0,0,0,0.38);
+    }
+
+    .service-card::before,
+    .energy-card::before,
+    .portfolio-card::before,
+    .process-card::before,
+    .contact-card::before {
+      content: '';
+      position: absolute;
+      inset: -40% 25% auto auto;
+      width: 180px;
+      height: 180px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(52,210,91,0.18), transparent 70%);
+      filter: blur(12px);
+      pointer-events: none;
+      transition: transform 0.35s ease;
+    }
+
+    .service-card:hover::before,
+    .energy-card:hover::before,
+    .portfolio-card:hover::before,
+    .process-card:hover::before,
+    .contact-card:hover::before {
+      transform: translate3d(-10px, 10px, 20px);
+    }
+
+    .service-card::after,
+    .energy-card::after,
+    .process-card::after,
+    .contact-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.00) 35%, rgba(255,255,255,0.16) 50%, rgba(255,255,255,0.00) 65%, transparent 100%);
+      transform: translateX(-130%);
+      transition: transform 0.9s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .service-card:hover::after,
+    .energy-card:hover::after,
+    .process-card:hover::after,
+    .contact-card:hover::after {
+      transform: translateX(130%);
+    }
+
+    .service-card-inner,
+    .energy-card-inner,
+    .process-card-inner,
+    .contact-card-inner {
+      position: relative;
+      z-index: 1;
+      padding: 28px;
+      height: 100%;
+    }
+
+    .service-icon,
+    .energy-icon,
+    .contact-icon {
+      width: 56px;
+      height: 56px;
+      display: inline-grid;
+      place-items: center;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.12), rgba(255,255,255,0.05));
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--green-2);
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.10);
+      margin-bottom: 22px;
+      font-size: 1.2rem;
+    }
+
+    .service-card h3,
+    .energy-card h3,
+    .portfolio-card h3,
+    .process-card h3,
+    .contact-card h3 {
+      margin: 0 0 12px;
+      font-size: 1.25rem;
+      letter-spacing: -0.03em;
+    }
+
+    .service-card p,
+    .energy-card p,
+    .portfolio-card p,
+    .process-card p,
+    .contact-card p,
+    .portfolio-meta,
+    .list {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.78;
+      font-size: 0.98rem;
+    }
+
+    .service-footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      align-items: center;
+      margin-top: 22px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+    }
+
+    .services-grid.energy {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 18px;
+    }
+
+    .list {
+      padding-left: 18px;
+    }
+
+    .list li + li {
+      margin-top: 8px;
+    }
+
+    .charts-grid {
+      margin-top: 42px;
+      grid-template-columns: minmax(0, 1.18fr) minmax(320px, 0.82fr);
+    }
+
+    .chart-card {
+      position: relative;
+      padding: 28px;
+      border-radius: 28px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,0.04);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+      min-height: 460px;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .chart-card::before {
+      content: '';
+      position: absolute;
+      inset: auto -10% -35% auto;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(52,210,91,0.18), transparent 72%);
+      filter: blur(12px);
+      z-index: -1;
+      pointer-events: none;
+    }
+
+    .chart-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 0%, rgba(255,255,255,0.00) 35%, rgba(255,255,255,0.10) 50%, rgba(255,255,255,0.00) 65%, transparent 100%);
+      transform: translateX(-140%);
+      transition: transform 0.9s ease;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .chart-card:hover::after {
+      transform: translateX(140%);
+    }
+
+    .chart-card h3 {
+      margin: 0 0 8px;
+      font-size: 1.35rem;
+      letter-spacing: -0.03em;
+    }
+
+    .chart-card p {
+      margin: 0 0 22px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+
+    .chart-wrap {
+      position: relative;
+      flex: 1;
+      min-height: 240px;
+      z-index: 1;
+    }
+
+    .chart-wrap--lg {
+      min-height: 330px;
+    }
+
+    .chart-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 6px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chart-head h3,
+    .chart-head p {
+      margin-right: 8px;
+    }
+
+    .chart-switcher {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(18px);
+      flex-shrink: 0;
+    }
+
+    .chart-switcher button {
+      border: 0;
+      min-height: 40px;
+      padding: 0 14px;
+      border-radius: 999px;
+      background: transparent;
+      color: rgba(255,255,255,0.72);
+      cursor: pointer;
+      transition: background 0.25s ease, color 0.25s ease, transform 0.25s ease;
+    }
+
+    .chart-switcher button.active {
+      background: linear-gradient(135deg, rgba(155,227,22,0.18), rgba(52,210,91,0.22));
+      color: #fff;
+      box-shadow: inset 0 0 0 1px rgba(155,227,22,0.14);
+    }
+
+    .chart-meta-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .chart-meta-item {
+      padding: 16px 18px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      min-height: 92px;
+    }
+
+    .chart-meta-item span {
+      display: block;
+      color: rgba(255,255,255,0.6);
+      font-size: 0.82rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .chart-meta-item strong {
+      display: block;
+      font-size: 1.35rem;
+      letter-spacing: -0.04em;
+    }
+
+    .chart-side-stack {
+      display: grid;
+      gap: 18px;
+    }
+
+    .chart-card--compact {
+      min-height: 292px;
+    }
+
+    .market-ticker {
+      position: relative;
+      overflow: hidden;
+      border-radius: 22px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.04);
+      padding: 14px 0;
+      backdrop-filter: blur(18px);
+    }
+
+    .ticker-track {
+      display: flex;
+      gap: 14px;
+      width: max-content;
+      padding-left: 16px;
+      animation: tickerMove 24s linear infinite;
+    }
+
+    .ticker-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.82);
+      white-space: nowrap;
+    }
+
+    .ticker-pill i {
+      color: var(--green-2);
+    }
+
+    .mini-panels {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .mini-panel {
+      padding: 20px 22px;
+      border-radius: 24px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .mini-panel strong {
+      display: block;
+      margin-bottom: 10px;
+      font-size: 1.05rem;
+    }
+
+    .mini-panel span {
+      color: var(--muted);
+      line-height: 1.7;
+      font-size: 0.95rem;
+      display: block;
+    }
+
+    .portfolio-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 42px;
+    }
+
+    .portfolio-card {
+      min-height: 100%;
+      isolation: isolate;
+    }
+
+    .portfolio-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(4,7,11,0.00), rgba(4,7,11,0.20) 34%, rgba(4,7,11,0.92) 100%),
+        var(--portfolio-bg, radial-gradient(circle at 20% 20%, rgba(155,227,22,0.20), transparent 30%), linear-gradient(135deg, #0a1118 0%, #0f1c24 100%));
+      z-index: 0;
+      transition: transform 0.35s ease;
+      transform: scale(1);
+    }
+
+    .portfolio-card:hover::after {
+      transform: scale(1.03);
+    }
+
+    .portfolio-card-inner {
+      position: relative;
+      z-index: 1;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .portfolio-media {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 28px 28px 0 0;
+      background: #091117;
+    }
+
+    .portfolio-media img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      transform: scale(1.01);
+      transition: transform 0.6s ease, filter 0.6s ease;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .portfolio-media::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(120deg, transparent 0%, rgba(255,255,255,0.00) 36%, rgba(255,255,255,0.24) 50%, rgba(255,255,255,0.00) 64%, transparent 100%);
+      transform: translateX(-130%);
+      transition: transform 0.95s ease;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .portfolio-media::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(4,7,11,0.02) 0%, rgba(4,7,11,0.18) 48%, rgba(4,7,11,0.74) 100%);
+      z-index: 1;
+    }
+
+    .portfolio-card:hover .portfolio-media img {
+      transform: scale(1.07);
+      filter: saturate(1.12) contrast(1.06);
+    }
+
+    .portfolio-card:hover .portfolio-media::before {
+      transform: translateX(130%);
+    }
+
+    .portfolio-copy {
+      position: relative;
+      z-index: 1;
+      padding: 22px 24px 26px;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .portfolio-top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.10);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: rgba(255,255,255,0.82);
+      font-size: 0.84rem;
+      backdrop-filter: blur(18px);
+    }
+
+    .portfolio-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+    }
+
+    .portfolio-meta span {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: rgba(255,255,255,0.78);
+      font-size: 0.88rem;
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-auto-rows: 1fr;
+      align-items: stretch;
+      margin-top: 42px;
+    }
+
+    .process-card {
+      height: 100%;
+    }
+
+    .process-card-inner {
+      min-height: 320px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .process-step {
+      font-size: 0.8rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.52);
+      margin-bottom: 18px;
+    }
+
+    .process-card h3 {
+      width: 100%;
+    }
+
+    .process-card p {
+      min-height: 0;
+      width: 100%;
+      margin: 0;
+    }
+
+    .contact-grid {
+      margin-top: 42px;
+      grid-template-columns: minmax(0, 1fr) minmax(320px, 0.9fr);
+      align-items: stretch;
+    }
+
+    .contact-form {
+      display: grid;
+      gap: 14px;
+    }
+
+    .field-row {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+    }
+
+    .input,
+    .textarea {
+      width: 100%;
+      padding: 16px 18px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.04);
+      color: #fff;
+      outline: none;
+      transition: border-color 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .input:focus,
+    .textarea:focus {
+      border-color: rgba(155,227,22,0.45);
+      background: rgba(255,255,255,0.06);
+      box-shadow: 0 0 0 4px rgba(155,227,22,0.08);
+    }
+
+    .textarea {
+      min-height: 170px;
+      resize: vertical;
+    }
+
+    .form-note {
+      color: rgba(255,255,255,0.56);
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .contact-stack {
+      display: grid;
+      gap: 16px;
+      height: 100%;
+      grid-template-rows: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-card a.inline-link {
+      color: #fff;
+      border-bottom: 1px solid rgba(255,255,255,0.15);
+    }
+
+    .map-card {
+      grid-column: 1 / -1;
+      margin-top: 16px;
+      overflow: hidden;
+      min-height: 320px;
+    }
+
+    .map-card iframe {
+      display: block;
+      width: 100%;
+      height: 320px;
+      border: 0;
+      filter: grayscale(1) invert(0.92) contrast(1.12) saturate(0.15);
+    }
+
+    .site-footer {
+      padding: 36px 0 56px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      margin-top: 28px;
+      position: relative;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(240px, 0.9fr) minmax(240px, 0.9fr);
+      gap: 24px;
+      align-items: start;
+    }
+
+    .footer-logo {
+      width: 220px;
+      margin-bottom: 20px;
+    }
+
+    .footer-title {
+      font-size: 1rem;
+      color: rgba(255,255,255,0.96);
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .footer-copy,
+    .footer-links a,
+    .footer-bottom {
+      color: rgba(255,255,255,0.68);
+      line-height: 1.8;
+      font-size: 0.96rem;
+    }
+
+    .footer-links {
+      display: grid;
+      gap: 10px;
+    }
+
+    .footer-bottom {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: 28px;
+      padding-top: 18px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .reveal,
+    .stagger-reveal > * {
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+    }
+
+    .glow-line {
+      display: block;
+      width: 120px;
+      height: 2px;
+      margin-top: 24px;
+      background: linear-gradient(90deg, var(--green), transparent);
+      box-shadow: 0 0 25px rgba(52,210,91,0.6);
+      border-radius: 999px;
+    }
+
+    .floating-status {
+      position: static;
+      width: 100%;
+      margin-top: 16px;
+      padding: 12px 16px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(18px);
+      font-size: 0.92rem;
+      color: rgba(255,255,255,0.82);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      text-align: center;
+    }
+
+    .floating-status::before {
+      content: '';
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, var(--green), var(--green-2));
+      box-shadow: 0 0 18px rgba(52,210,91,0.72);
+    }
+
+    .highlight-box {
+      padding: 20px 22px;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(155,227,22,0.10), rgba(129,228,255,0.05));
+      border: 1px solid rgba(155,227,22,0.15);
+      margin-top: 24px;
+      color: rgba(255,255,255,0.85);
+      line-height: 1.8;
+    }
+
+    .divider-space { height: 14px; }
+
+    @keyframes floatGlow {
+      0%, 100% { transform: translate3d(0, 0, 0) scale(1); }
+      50% { transform: translate3d(0, 20px, 0) scale(1.04); }
+    }
+
+    @keyframes btnPulse {
+      0%, 100% { box-shadow: 0 14px 36px rgba(72, 255, 0, 0.16); }
+      50% { box-shadow: 0 18px 44px rgba(72, 255, 0, 0.26); }
+    }
+
+    @keyframes tickerMove {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 1180px) {
+      .hero-grid,
+      .about-grid,
+      .charts-grid,
+      .contact-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nav-links {
+        gap: 16px;
+        font-size: 0.9rem;
+      }
+
+      .services-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .services-grid.energy { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .process-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .portfolio-grid { grid-template-columns: 1fr; }
+      .chart-meta-grid { grid-template-columns: 1fr; }
+      .chart-head { flex-direction: column; }
+    }
+
+    @media (max-width: 860px) {
+      .nav-links,
+      .nav-actions .btn {
+        display: none;
+      }
+
+      .nav-shell {
+        padding: 12px 14px;
+      }
+
+      .brand img { width: 150px; }
+      .mobile-toggle { display: inline-grid; place-items: center; }
+
+      .mobile-menu {
+        position: absolute;
+        left: 16px;
+        right: 16px;
+        top: calc(100% + 10px);
+        padding: 18px;
+        border-radius: 24px;
+        border: 1px solid rgba(255,255,255,0.08);
+        background: rgba(8,16,22,0.92);
+        backdrop-filter: blur(22px);
+        display: grid;
+        gap: 14px;
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-10px);
+        transition: opacity 0.25s ease, transform 0.25s ease;
+      }
+
+      .mobile-menu.open {
+        opacity: 1;
+        pointer-events: auto;
+        transform: translateY(0);
+      }
+
+      .mobile-menu a,
+      .mobile-menu .btn {
+        width: 100%;
+      }
+
+      .mobile-menu a {
+        color: rgba(255,255,255,0.86);
+        padding: 10px 0;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+      }
+
+      .stats-grid,
+      .services-grid,
+      .services-grid.energy,
+      .process-grid,
+      .field-row,
+      .chart-meta-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 132px;
+      }
+
+
+      .chart-switcher {
+        width: 100%;
+        justify-content: space-between;
+        flex-wrap: wrap;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .section { padding: 90px 0; }
+      .hero-copy h1 { letter-spacing: -0.06em; }
+      .hero-copy p { font-size: 1rem; }
+      .hero-actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .hero-panel,
+      .glass-card,
+      .chart-card,
+      .service-card-inner,
+      .energy-card-inner,
+      .process-card-inner,
+      .contact-card-inner { padding: 22px; }
+
+      .process-card-inner {
+        min-height: 0;
+      }
+    }
+
+
+    @keyframes progressGradientFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+
+    @keyframes progressShine {
+      0% { transform: translateX(-90px); opacity: 0.25; }
+      20% { opacity: 0.8; }
+      100% { transform: translateX(520px); opacity: 0.2; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+      .reveal,
+      .stagger-reveal > * {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .signal-progress span {
+        width: 100% !important;
+        animation: none !important;
+      }
+      .signal-progress span::after {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" id="siteHeader">
+    <div class="nav-shell">
+      <a class="brand" href="#top" aria-label="Emergy One — strona główna">
+        <img src="assets/emergy-one-logo-white.png" alt="Emergy One" />
+      </a>
+
+      <nav class="nav-links" aria-label="Nawigacja główna">
+        <a href="#o-firmie">O firmie</a>
+        <a href="#pv">Fotowoltaika</a>
+        <a href="#energetyka">Sieci SN i nn</a>
+        <a href="#dane">Dane branżowe</a>
+        <a href="#realizacje">Portfolio</a>
+        <a href="#kontakt">Kontakt</a>
+      </nav>
+
+      <div class="nav-actions">
+        <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Otwórz menu" aria-expanded="false">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+
+      <div class="mobile-menu" id="mobileMenu" aria-label="Menu mobilne">
+        <a href="#o-firmie">O firmie</a>
+        <a href="#pv">Fotowoltaika</a>
+        <a href="#energetyka">Sieci SN i nn</a>
+        <a href="#dane">Dane branżowe</a>
+        <a href="#realizacje">Portfolio</a>
+        <a href="#kontakt">Kontakt</a>
+        <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero section">
+      <canvas id="hero-particles" aria-hidden="true"></canvas>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <div class="eyebrow reveal">PV • Farmy fotowoltaiczne • Sieci SN i nn</div>
+          <h1 class="reveal">
+            Budujemy <span class="accent">nowoczesną energię</span><br />
+            dla biznesu, przemysłu<br />
+            i inwestycji infrastrukturalnych.
+          </h1>
+          <p class="reveal">
+            Emergy One łączy fotowoltaikę, infrastrukturę elektroenergetyczną oraz dokumentację projektową w jeden spójny proces — od koncepcji, przez wykonawstwo, po odbiory i gotowość operacyjną obiektu.
+          </p>
+          <div class="hero-actions reveal">
+            <a href="#kontakt" class="btn btn-primary"><i class="fa-regular fa-paper-plane"></i> Umów rozmowę</a>
+            <a href="#pv" class="btn btn-secondary"><i class="fa-solid fa-arrow-down"></i> Zobacz zakres usług</a>
+          </div>
+        </div>
+
+        <div class="hero-panel reveal">
+          <div class="chip-row">
+            <span class="chip">PV dla domu</span>
+            <span class="chip">PV dla przemysłu</span>
+            <span class="chip">Farmy PV</span>
+            <span class="chip">Stacje SN/nn</span>
+            <span class="chip">Przyłącza</span>
+            <span class="chip">Pomiary</span>
+          </div>
+          <div class="signal-card">
+            <h3>Jedna firma. Jeden proces. Jedna odpowiedzialność.</h3>
+            <p>Projekt, formalności, wykonawstwo, dokumentacja powykonawcza i przygotowanie inwestycji do bezpiecznej eksploatacji.</p>
+            <div class="signal-progress"><span data-progress="96"></span></div>
+          </div>
+          <div class="signal-card">
+            <h3>Obsługa inwestycji energetycznych od nN do SN</h3>
+            <p>Budowa i modernizacja infrastruktury elektroenergetycznej, prace kablowe, stacje transformatorowe, rozdzielnie i testy odbiorcze.</p>
+            <div class="signal-progress"><span data-progress="88"></span></div>
+          </div>
+          <div class="signal-card">
+            <h3>Fotowoltaika od mikroinstalacji po farmy utility-scale</h3>
+            <p>Rozwiązania dla klientów indywidualnych, przemysłu, sektora komercyjnego i wielkoskalowych inwestycji OZE.</p>
+            <div class="signal-progress"><span data-progress="92"></span></div>
+          </div>
+          <div class="floating-status">Gotowość do wdrożeń: projekt + wykonanie + odbiór</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="o-firmie">
+      <div class="container">
+        <div class="eyebrow reveal">O firmie</div>
+        <h2 class="section-title reveal">Energia zaprojektowana z myślą o skali, niezawodności i jakości wykonania.</h2>
+        <p class="section-subtitle reveal">
+          Emergy One działa na styku nowoczesnych instalacji fotowoltaicznych oraz klasycznej infrastruktury elektroenergetycznej. Dzięki temu możemy prowadzić inwestycje kompleksowo: od analiz i dokumentacji, przez budowę, po odbiory i wsparcie eksploatacyjne.
+        </p>
+
+        <div class="about-grid">
+          <div class="glass-card reveal">
+            <p class="about-text">
+              W praktyce oznacza to połączenie dwóch kluczowych kompetencji: realizacji systemów OZE oraz wykonawstwa technicznego dla sieci i instalacji SN/nn. Taki model pracy skraca ścieżkę decyzyjną, porządkuje odpowiedzialność po stronie wykonawczej i pozwala lepiej kontrolować harmonogram, jakość oraz kompletność dokumentacji.
+            </p>
+            <div class="highlight-box">
+              Realizujemy inwestycje w modelu end-to-end: koncepcja, projekt, uzgodnienia, budowa, pomiary, odbiory techniczne oraz dokumentacja powykonawcza gotowa do przekazania inwestorowi i operatorowi.
+            </div>
+            <span class="glow-line"></span>
+          </div>
+
+          <div class="glass-card reveal">
+            <div class="stats-grid">
+              <article class="stat-card">
+                <div>
+                  <div class="stat-number" data-counter="2">0</div>
+                  <div class="stat-label">Główne filary oferty: fotowoltaika oraz infrastruktura elektroenergetyczna SN/nn.</div>
+                </div>
+              </article>
+              <article class="stat-card">
+                <div>
+                  <div class="stat-number" data-counter="360">0</div>
+                  <div class="stat-label">Stopni obsługi inwestycji — od koncepcji i formalności do odbioru oraz dokumentacji powykonawczej.</div>
+                </div>
+              </article>
+              <article class="stat-card">
+                <div>
+                  <div class="stat-number" data-counter="12">0</div>
+                  <div class="stat-label">Kluczowych grup kompetencji prezentowanych na stronie: wykonawstwo, projekty, pomiary, serwis i dokumentacja.</div>
+                </div>
+              </article>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="pv">
+      <div class="container">
+        <div class="eyebrow reveal">Fotowoltaika i farmy PV</div>
+        <h2 class="section-title reveal">Zakres usług PV — od domu po wielkoskalową farmę.</h2>
+        <p class="section-subtitle reveal">
+          Kompleksowe projektowanie i wykonawstwo systemów PV dla klientów indywidualnych, biznesu, przemysłu oraz inwestorów realizujących farmy fotowoltaiczne. Zespół obejmuje również przygotowanie pełnej ścieżki dokumentacyjnej i administracyjnej.
+        </p>
+
+        <div class="services-grid stagger-reveal">
+          <article class="service-card tilt-card">
+            <div class="service-card-inner">
+              <div class="service-icon"><i class="fa-solid fa-house"></i></div>
+              <h3>PV dla domu</h3>
+              <p>Projektowanie i budowa instalacji fotowoltaicznych dla budynków jednorodzinnych, z doborem mocy, konfiguracją komponentów oraz przygotowaniem dokumentacji zgłoszeniowej.</p>
+              <div class="service-footer">
+                <span>Projekt + montaż + uruchomienie</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card tilt-card">
+            <div class="service-card-inner">
+              <div class="service-icon"><i class="fa-solid fa-industry"></i></div>
+              <h3>PV dla przemysłu i komercji</h3>
+              <p>Systemy dachowe i gruntowe dla hal, obiektów logistycznych, zakładów produkcyjnych i nieruchomości komercyjnych — z naciskiem na bezpieczeństwo, opłacalność i integrację z profilem zużycia energii.</p>
+              <div class="service-footer">
+                <span>C&amp;I / przemysł / retail</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card tilt-card">
+            <div class="service-card-inner">
+              <div class="service-icon"><i class="fa-solid fa-solar-panel"></i></div>
+              <h3>Farmy fotowoltaiczne</h3>
+              <p>Wsparcie inwestycji utility-scale: przygotowanie koncepcji, koordynacja procesu projektowego, wykonawstwo wybranych zakresów i obsługa techniczna inwestycji PV w skali farmowej.</p>
+              <div class="service-footer">
+                <span>Utility-scale PV</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </article>
+
+          <article class="service-card tilt-card">
+            <div class="service-card-inner">
+              <div class="service-icon"><i class="fa-solid fa-folder-tree"></i></div>
+              <h3>Dokumentacja i formalności</h3>
+              <p>Kompletna dokumentacja projektowa i administracyjna: warunki przyłączenia, projekty budowlane i wykonawcze, uzgodnienia, dokumentacja powykonawcza i komplet materiałów do odbiorów.</p>
+              <div class="service-footer">
+                <span>Formalności + odbiory</span>
+                <i class="fa-solid fa-arrow-right"></i>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="energetyka">
+      <div class="container">
+        <div class="eyebrow reveal">Usługi energetyczne — sieci SN i nn</div>
+        <h2 class="section-title reveal">Infrastruktura elektroenergetyczna dla obiektów, inwestycji i rozbudowy sieci.</h2>
+        <p class="section-subtitle reveal">
+          Zakres obejmuje wykonawstwo, modernizacje i obsługę techniczną elementów infrastruktury elektroenergetycznej niskiego i średniego napięcia, wraz z pomiarami, dokumentacją oraz przygotowaniem instalacji do odbiorów technicznych.
+        </p>
+
+        <div class="services-grid energy stagger-reveal">
+          <article class="energy-card tilt-card">
+            <div class="energy-card-inner">
+              <div class="energy-icon"><i class="fa-solid fa-building-circle-arrow-right"></i></div>
+              <h3>Stacje transformatorowe SN/nn</h3>
+              <ul class="list">
+                <li>budowa i modernizacja stacji transformatorowych,</li>
+                <li>montaż i wymiana transformatorów, pól i osprzętu,</li>
+                <li>prace w układach rozdziału energii oraz przygotowanie do rozruchu.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="energy-card tilt-card">
+            <div class="energy-card-inner">
+              <div class="energy-icon"><i class="fa-solid fa-wave-square"></i></div>
+              <h3>Linie kablowe SN i nn</h3>
+              <ul class="list">
+                <li>budowa, przebudowa i modernizacja linii kablowych,</li>
+                <li>trasowanie, układanie i zabezpieczanie tras kablowych,</li>
+                <li>łączenie odcinków, mufowanie i przygotowanie do testów odbiorczych.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="energy-card tilt-card">
+            <div class="energy-card-inner">
+              <div class="energy-icon"><i class="fa-solid fa-plug-circle-bolt"></i></div>
+              <h3>Przyłącza elektroenergetyczne SN/nn</h3>
+              <ul class="list">
+                <li>realizacja nowych przyłączy dla obiektów i inwestycji,</li>
+                <li>przebudowa istniejących układów zasilania,</li>
+                <li>koordynacja zakresów potrzebnych do uruchomienia obiektu.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="energy-card tilt-card">
+            <div class="energy-card-inner">
+              <div class="energy-icon"><i class="fa-solid fa-bars-progress"></i></div>
+              <h3>Rozdzielnie, układy zasilania i automatyka</h3>
+              <ul class="list">
+                <li>rozdzielnie nn i elementy zasilania obiektów,</li>
+                <li>układy SZR/ATS, aparatura zabezpieczeniowa i sterująca,</li>
+                <li>integracja rozdziału energii z wymaganiami inwestycji.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="energy-card tilt-card">
+            <div class="energy-card-inner">
+              <div class="energy-icon"><i class="fa-solid fa-ruler-combined"></i></div>
+              <h3>Pomiary, badania i testy</h3>
+              <ul class="list">
+                <li>ochrona przeciwporażeniowa i ciągłość przewodów ochronnych,</li>
+                <li>impedancja pętli zwarcia, rezystancja izolacji, rezystancja uziemień,</li>
+                <li>badania odbiorcze i eksploatacyjne instalacji elektrycznych.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="energy-card tilt-card">
+            <div class="energy-card-inner">
+              <div class="energy-icon"><i class="fa-solid fa-file-shield"></i></div>
+              <h3>Odbiory i dokumentacja powykonawcza</h3>
+              <ul class="list">
+                <li>protokoły pomiarowe i zestawienia materiałowe,</li>
+                <li>schematy, rysunki, aktualizacje dokumentacji technicznej,</li>
+                <li>komplet dokumentów do przekazania inwestorowi i odbiorów technicznych.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="energy-card tilt-card">
+            <div class="energy-card-inner">
+              <div class="energy-icon"><i class="fa-solid fa-chart-line"></i></div>
+              <h3>Audyty i optymalizacja energetyczna</h3>
+              <ul class="list">
+                <li>audyty energetyczne obiektów i infrastruktury,</li>
+                <li>analiza sposobu zasilania, zużycia i potencjału optymalizacji,</li>
+                <li>rekomendacje modernizacyjne dla poprawy efektywności i bezpieczeństwa.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="energy-card tilt-card">
+            <div class="energy-card-inner">
+              <div class="energy-icon"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+              <h3>Serwis i utrzymanie ruchu</h3>
+              <ul class="list">
+                <li>przeglądy techniczne i działania serwisowe,</li>
+                <li>diagnostyka usterek oraz wsparcie eksploatacyjne,</li>
+                <li>utrzymanie ruchu instalacji elektrycznych i energetycznych.</li>
+              </ul>
+            </div>
+          </article>
+
+          <article class="energy-card tilt-card">
+            <div class="energy-card-inner">
+              <div class="energy-icon"><i class="fa-solid fa-pen-ruler"></i></div>
+              <h3>Projekty elektryczne i elektroenergetyczne</h3>
+              <ul class="list">
+                <li>projekty koncepcyjne, budowlane i wykonawcze,</li>
+                <li>opracowania techniczne dla obiektów i infrastruktury,</li>
+                <li>koordynacja branżowa i przygotowanie dokumentacji dla procesu realizacji.</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="dane">
+      <div class="container">
+        <div class="eyebrow reveal">Ruchome wykresy i dane branżowe</div>
+        <h2 class="section-title reveal">Rynek energii przyspiesza — a inwestycje wymagają sprawnych partnerów wykonawczych.</h2>
+        <p class="section-subtitle reveal">
+          Poniższe wizualizacje porządkują dynamikę rynku i pokazują, jak wygląda kompleksowa obsługa inwestycji — od koncepcji, przez wykonanie, aż po odbiory i przekazanie do eksploatacji.
+        </p>
+
+        <div class="charts-grid">
+          <article class="chart-card reveal">
+            <div class="chart-head">
+              <div>
+                <h3>Wzrost rynku PV w Polsce</h3>
+                <p>Interaktywny wykres pokazuje tempo rozwoju segmentu fotowoltaiki. Przełączaj widoki, aby zobaczyć wzrost mocy, skumulowaną dynamikę rynku oraz roczne przyrosty.</p>
+              </div>
+              <div class="chart-switcher" id="chartModeSwitch" aria-label="Przełącz widok wykresu rynku PV">
+                <button type="button" class="active" data-mode="growth">Moc PV</button>
+                <button type="button" data-mode="index">Dynamika</button>
+                <button type="button" data-mode="pace">Przyrost r/r</button>
+              </div>
+            </div>
+            <div class="chart-wrap chart-wrap--lg">
+              <canvas id="pvGrowthChart" aria-label="Interaktywny wykres wzrostu rynku PV w Polsce" role="img"></canvas>
+            </div>
+            <div class="chart-meta-grid">
+              <div class="chart-meta-item">
+                <span>Aktualny odczyt</span>
+                <strong id="chartHeadlineValue">20,2 GW</strong>
+              </div>
+              <div class="chart-meta-item">
+                <span>Zmiana</span>
+                <strong id="chartHeadlineDelta">+3,1 GW r/r</strong>
+              </div>
+              <div class="chart-meta-item">
+                <span>Perspektywa</span>
+                <strong id="chartHeadlineNote">Rosnące zapotrzebowanie na wykonawstwo</strong>
+              </div>
+            </div>
+          </article>
+
+          <div class="reveal chart-side-stack">
+            <article class="chart-card chart-card--compact">
+              <h3>Model obsługi inwestycji</h3>
+              <p>Przejrzysty podział procesu: analiza, projekt, wykonawstwo i odbiór. Każdy etap ma przypisane kompetencje i odpowiedzialność.</p>
+              <div class="chart-wrap" style="min-height: 210px;">
+                <canvas id="serviceMixChart" aria-label="Model obsługi inwestycji end-to-end" role="img"></canvas>
+              </div>
+            </article>
+            <article class="chart-card chart-card--compact">
+              <h3>Struktura procesu wykonawczego</h3>
+              <p>Poglądowy rozkład intensywności prac przy prowadzeniu projektu energetycznego od koncepcji po odbiory końcowe.</p>
+              <div class="chart-wrap" style="min-height: 220px;">
+                <canvas id="executionStageChart" aria-label="Etapy procesu wykonawczego" role="img"></canvas>
+              </div>
+            </article>
+            <div class="market-ticker" aria-hidden="true">
+              <div class="ticker-track">
+                <span class="ticker-pill"><i class="fa-solid fa-bolt"></i> Przyłącza SN/nn</span>
+                <span class="ticker-pill"><i class="fa-solid fa-solar-panel"></i> Farmy PV</span>
+                <span class="ticker-pill"><i class="fa-solid fa-tower-cell"></i> Stacje transformatorowe</span>
+                <span class="ticker-pill"><i class="fa-solid fa-ruler-combined"></i> Pomiary i odbiory</span>
+                <span class="ticker-pill"><i class="fa-solid fa-file-circle-check"></i> Dokumentacja powykonawcza</span>
+                <span class="ticker-pill"><i class="fa-solid fa-industry"></i> Obiekty przemysłowe</span>
+                <span class="ticker-pill"><i class="fa-solid fa-bolt"></i> Przyłącza SN/nn</span>
+                <span class="ticker-pill"><i class="fa-solid fa-solar-panel"></i> Farmy PV</span>
+                <span class="ticker-pill"><i class="fa-solid fa-tower-cell"></i> Stacje transformatorowe</span>
+                <span class="ticker-pill"><i class="fa-solid fa-ruler-combined"></i> Pomiary i odbiory</span>
+                <span class="ticker-pill"><i class="fa-solid fa-file-circle-check"></i> Dokumentacja powykonawcza</span>
+                <span class="ticker-pill"><i class="fa-solid fa-industry"></i> Obiekty przemysłowe</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="realizacje">
+      <div class="container">
+        <div class="eyebrow reveal">Realizacje / portfolio</div>
+        <h2 class="section-title reveal">Wybrane obszary realizacji Emergy One w energetyce i OZE.</h2>
+        <p class="section-subtitle reveal">
+          Przykładowe kierunki projektów: instalacje dachowe dla domów, systemy PV dla przemysłu i komercji, farmy fotowoltaiczne oraz infrastruktura elektroenergetyczna SN/nn.
+        </p>
+
+        <div class="portfolio-grid stagger-reveal">
+          <article class="portfolio-card tilt-card" style="--portfolio-bg: radial-gradient(circle at 15% 15%, rgba(155,227,22,0.22), transparent 35%), linear-gradient(135deg, #0a1015 0%, #10222b 100%);">
+            <div class="portfolio-card-inner">
+              <div class="portfolio-media">
+                <img src="https://images.unsplash.com/photo-1771479755134-9c1e3143c110?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=1600" alt="Instalacja fotowoltaiczna na dachu budynku mieszkalnego" loading="lazy" />
+              </div>
+              <div class="portfolio-copy">
+                <div class="portfolio-top">
+                  <span class="tag"><i class="fa-solid fa-house"></i> Segment residential</span>
+                  <span class="tag">PV</span>
+                </div>
+                <h3>Instalacje PV dla domów i zabudowy mieszkaniowej</h3>
+                <p>Realizacje obejmujące dobór mocy, konfigurację układu, montaż dachowy oraz przygotowanie inwestycji do bezpiecznego uruchomienia i eksploatacji.</p>
+                <div class="portfolio-meta">
+                  <span><i class="fa-solid fa-house-chimney"></i> dachy skośne</span>
+                  <span><i class="fa-solid fa-bolt"></i> uruchomienie</span>
+                  <span><i class="fa-solid fa-file-lines"></i> zgłoszenia</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-card tilt-card" style="--portfolio-bg: radial-gradient(circle at 85% 18%, rgba(129,228,255,0.18), transparent 30%), linear-gradient(135deg, #091017 0%, #182631 100%);">
+            <div class="portfolio-card-inner">
+              <div class="portfolio-media">
+                <img src="https://images.unsplash.com/photo-1745187794292-ba0014281746?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=1600" alt="Instalacja fotowoltaiczna na dachu obiektu przemysłowego" loading="lazy" />
+              </div>
+              <div class="portfolio-copy">
+                <div class="portfolio-top">
+                  <span class="tag"><i class="fa-solid fa-industry"></i> C&amp;I / przemysł</span>
+                  <span class="tag">Roof &amp; ground</span>
+                </div>
+                <h3>Systemy PV dla hal, magazynów i obiektów komercyjnych</h3>
+                <p>Zakres dla biznesu i przemysłu: układy dachowe i gruntowe, analiza profilu zużycia energii, integracja z obiektem oraz przygotowanie do odbiorów technicznych.</p>
+                <div class="portfolio-meta">
+                  <span><i class="fa-solid fa-chart-simple"></i> analiza zużycia</span>
+                  <span><i class="fa-solid fa-building"></i> obiekty C&amp;I</span>
+                  <span><i class="fa-solid fa-sliders"></i> optymalizacja</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-card tilt-card" style="--portfolio-bg: radial-gradient(circle at 30% 85%, rgba(239,193,90,0.16), transparent 30%), linear-gradient(135deg, #090d12 0%, #151f29 100%);">
+            <div class="portfolio-card-inner">
+              <div class="portfolio-media">
+                <img src="https://images.unsplash.com/photo-1756913455227-fb3b85575fca?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=1600" alt="Farma fotowoltaiczna utility-scale" loading="lazy" />
+              </div>
+              <div class="portfolio-copy">
+                <div class="portfolio-top">
+                  <span class="tag"><i class="fa-solid fa-solar-panel"></i> Utility-scale</span>
+                  <span class="tag">Farmy PV</span>
+                </div>
+                <h3>Farmy fotowoltaiczne i inwestycje wielkoskalowe</h3>
+                <p>Wsparcie realizacji farm PV: przygotowanie inwestycji, koordynacja robót, infrastruktura towarzysząca oraz kompletacja dokumentacji wymaganej na kolejnych etapach projektu.</p>
+                <div class="portfolio-meta">
+                  <span><i class="fa-solid fa-layer-group"></i> przygotowanie inwestycji</span>
+                  <span><i class="fa-solid fa-road"></i> infrastruktura</span>
+                  <span><i class="fa-solid fa-helmet-safety"></i> wykonawstwo</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="portfolio-card tilt-card" style="--portfolio-bg: radial-gradient(circle at 88% 22%, rgba(155,227,22,0.16), transparent 24%), linear-gradient(135deg, #081016 0%, #172733 100%);">
+            <div class="portfolio-card-inner">
+              <div class="portfolio-media">
+                <img src="https://images.unsplash.com/photo-1693013112835-5f3128bb555f?auto=format&fit=crop&fm=jpg&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&ixlib=rb-4.1.0&q=60&w=1600" alt="Stacja transformatorowa i infrastruktura elektroenergetyczna SN nn" loading="lazy" />
+              </div>
+              <div class="portfolio-copy">
+                <div class="portfolio-top">
+                  <span class="tag"><i class="fa-solid fa-bolt"></i> Sieci SN/nn</span>
+                  <span class="tag">Grid infrastructure</span>
+                </div>
+                <h3>Stacje transformatorowe, przyłącza i infrastruktura SN/nn</h3>
+                <p>Zakres obejmujący budowę i modernizację stacji, prace kablowe, przyłącza elektroenergetyczne oraz przygotowanie instalacji do pomiarów, odbiorów i przekazania do eksploatacji.</p>
+                <div class="portfolio-meta">
+                  <span><i class="fa-solid fa-wave-square"></i> linie kablowe</span>
+                  <span><i class="fa-solid fa-ruler-combined"></i> pomiary</span>
+                  <span><i class="fa-solid fa-file-circle-check"></i> odbiory</span>
+                </div>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="proces">
+      <div class="container">
+        <div class="eyebrow reveal">Proces współpracy</div>
+        <h2 class="section-title reveal">Od pierwszej rozmowy do odbioru technicznego.</h2>
+        <p class="section-subtitle reveal">
+          Struktura współpracy została zaprojektowana tak, aby maksymalnie ułatwić klientowi przejście przez cały proces realizacji — zarówno przy systemach PV, jak i pracach elektroenergetycznych SN/nn.
+        </p>
+
+        <div class="process-grid stagger-reveal">
+          <article class="process-card tilt-card">
+            <div class="process-card-inner">
+              <div class="process-step">Krok 01</div>
+              <h3>Rozpoznanie potrzeb</h3>
+              <p>Analiza obiektu, planowanego zakresu, wymagań formalnych i technicznych oraz założeń inwestycyjnych.</p>
+            </div>
+          </article>
+          <article class="process-card tilt-card">
+            <div class="process-card-inner">
+              <div class="process-step">Krok 02</div>
+              <h3>Koncepcja i projekt</h3>
+              <p>Dobór rozwiązania, przygotowanie założeń projektowych, uzgodnień oraz dokumentacji niezbędnej do rozpoczęcia prac.</p>
+            </div>
+          </article>
+          <article class="process-card tilt-card">
+            <div class="process-card-inner">
+              <div class="process-step">Krok 03</div>
+              <h3>Realizacja prac</h3>
+              <p>Wykonawstwo, koordynacja branżowa, kontrola jakości i prowadzenie inwestycji zgodnie z harmonogramem.</p>
+            </div>
+          </article>
+          <article class="process-card tilt-card">
+            <div class="process-card-inner">
+              <div class="process-step">Krok 04</div>
+              <h3>Pomiary i odbiory</h3>
+              <p>Badania techniczne, przygotowanie protokołów, weryfikacja gotowości instalacji oraz kompletowanie dokumentów do odbioru.</p>
+            </div>
+          </article>
+          <article class="process-card tilt-card">
+            <div class="process-card-inner">
+              <div class="process-step">Krok 05</div>
+              <h3>Przekazanie i wsparcie</h3>
+              <p>Dokumentacja powykonawcza, przekazanie inwestorowi, wdrożenie do eksploatacji oraz możliwość dalszego wsparcia serwisowego.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="kontakt">
+      <div class="container">
+        <div class="eyebrow reveal">Kontakt</div>
+        <h2 class="section-title reveal">Porozmawiajmy o Twojej inwestycji energetycznej.</h2>
+        <p class="section-subtitle reveal">
+          Opisz zakres inwestycji, lokalizację i oczekiwany termin. Skontaktujemy się, aby dobrać właściwy model współpracy, zakres wykonawczy oraz kolejne kroki formalno-techniczne.
+        </p>
+
+        <div class="contact-grid">
+          <article class="contact-card reveal">
+            <div class="contact-card-inner">
+              <h3>Wyślij zapytanie</h3>
+              <p>Napisz, czego dotyczy inwestycja. Możesz wskazać typ obiektu, lokalizację, oczekiwany termin oraz potrzebny zakres prac.</p>
+              <div class="divider-space"></div>
+              <form class="contact-form" id="contactForm">
+                <div class="field-row">
+                  <input class="input" type="text" name="name" id="name" placeholder="Imię i nazwisko / firma" required />
+                  <input class="input" type="tel" name="phone" id="phone" placeholder="Telefon" required />
+                </div>
+                <div class="field-row">
+                  <input class="input" type="email" name="email" id="email" placeholder="E-mail" required />
+                  <input class="input" type="text" name="subject" id="subject" placeholder="Temat" required />
+                </div>
+                <textarea class="textarea" name="message" id="message" placeholder="Zakres inwestycji, lokalizacja, oczekiwany termin, dodatkowe informacje..." required></textarea>
+                <button type="submit" class="btn btn-primary"><i class="fa-regular fa-envelope"></i> Przygotuj wiadomość</button>
+                <div class="form-note" id="formNote">Po kliknięciu otworzy się domyślny klient pocztowy z uzupełnioną treścią wiadomości.</div>
+              </form>
+            </div>
+          </article>
+
+          <div class="contact-stack reveal">
+            <article class="contact-card">
+              <div class="contact-card-inner">
+                <div class="contact-icon"><i class="fa-solid fa-phone"></i></div>
+                <h3>Dane kontaktowe</h3>
+                <p><strong>Telefon:</strong> <a class="inline-link" href="tel:+48695201373">695 201 373</a><br />
+                <strong>E-mail:</strong> <a class="inline-link" href="mailto:biuro@emergy.pl">biuro@emergy.pl</a></p>
+              </div>
+            </article>
+
+            <article class="contact-card">
+              <div class="contact-card-inner">
+                <div class="contact-icon"><i class="fa-solid fa-building"></i></div>
+                <h3>Dane rejestrowe</h3>
+                <p>
+                  Emergy One Sp. z o.o.<br />
+                  ul. Stawna 2, 62-052 Komorniki<br />
+                  NIP: 7773417987<br />
+                  REGON: 527308141<br />
+                  KRS: 0001078482
+                </p>
+              </div>
+            </article>
+          </div>
+
+          <article class="contact-card map-card reveal">
+            <iframe
+              title="Mapa dojazdu — Emergy One"
+              loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade"
+              src="https://www.google.com/maps?q=Stawna%202%2C%2062-052%20Komorniki&output=embed">
+            </iframe>
+          </article>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <img class="footer-logo" src="assets/emergy-one-logo-white.png" alt="Emergy One" />
+        <p class="footer-copy">
+          Emergy One realizuje inwestycje z zakresu fotowoltaiki, farm PV oraz infrastruktury elektroenergetycznej SN i nn — łącząc projekt, wykonawstwo, pomiary, odbiory i dokumentację w jednym procesie.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Nawigacja</h4>
+        <div class="footer-links">
+          <a href="#o-firmie">O firmie</a>
+          <a href="#pv">Fotowoltaika</a>
+          <a href="#energetyka">Sieci SN i nn</a>
+          <a href="#realizacje">Portfolio</a>
+          <a href="#kontakt">Kontakt</a>
+        </div>
+      </div>
+
+      <div>
+        <h4 class="footer-title">Kontakt i dane firmy</h4>
+        <p class="footer-copy">
+          Emergy One Sp. z o.o.<br />
+          ul. Stawna 2, 62-052 Komorniki<br />
+          <a href="tel:+48695201373">695 201 373</a><br />
+          <a href="mailto:biuro@emergy.pl">biuro@emergy.pl</a><br />
+          NIP 7773417987 · REGON 527308141 · KRS 0001078482
+        </p>
+      </div>
+    </div>
+
+    <div class="container footer-bottom">
+      <span>© <span id="year"></span> Emergy One. Wszelkie prawa zastrzeżone.</span>
+      <span>Gotowe do wdrożenia • HTML / CSS / JS • SEO / responsive / animacje</span>
+    </div>
+  </footer>
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Emergy One Sp. z o.o.",
+      "legalName": "EMERGY ONE SPÓŁKA Z OGRANICZONĄ ODPOWIEDZIALNOŚCIĄ",
+      "telephone": "+48 695 201 373",
+      "email": "biuro@emergy.pl",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "ul. Stawna 2",
+        "postalCode": "62-052",
+        "addressLocality": "Komorniki",
+        "addressCountry": "PL"
+      },
+      "identifier": [
+        "NIP: 7773417987",
+        "REGON: 527308141",
+        "KRS: 0001078482"
+      ],
+      "areaServed": "Polska",
+      "knowsAbout": [
+        "fotowoltaika",
+        "farmy fotowoltaiczne",
+        "sieci SN",
+        "sieci nn",
+        "stacje transformatorowe",
+        "projekty elektryczne",
+        "audyty energetyczne"
+      ]
+    }
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.3/dist/chart.umd.min.js"></script>
+  <script>
+    const header = document.getElementById('siteHeader');
+    const mobileToggle = document.getElementById('mobileToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const menuLinks = mobileMenu.querySelectorAll('a');
+
+    const setHeaderState = () => {
+      header.classList.toggle('scrolled', window.scrollY > 16);
+    };
+    setHeaderState();
+    window.addEventListener('scroll', setHeaderState, { passive: true });
+
+    mobileToggle?.addEventListener('click', () => {
+      const isOpen = mobileMenu.classList.toggle('open');
+      mobileToggle.setAttribute('aria-expanded', String(isOpen));
+      mobileToggle.innerHTML = isOpen
+        ? '<i class="fa-solid fa-xmark"></i>'
+        : '<i class="fa-solid fa-bars"></i>';
+    });
+
+    menuLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.remove('open');
+        mobileToggle.setAttribute('aria-expanded', 'false');
+        mobileToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
+      });
+    });
+
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    if (window.gsap) {
+      gsap.registerPlugin(ScrollTrigger);
+
+      gsap.utils.toArray('.reveal').forEach((item, index) => {
+        gsap.to(item, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 1,
+          delay: index * 0.03,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 88%'
+          }
+        });
+      });
+
+      gsap.utils.toArray('.stagger-reveal').forEach(group => {
+        gsap.to(group.children, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.9,
+          ease: 'power3.out',
+          stagger: 0.08,
+          scrollTrigger: {
+            trigger: group,
+            start: 'top 84%'
+          }
+        });
+      });
+
+      gsap.utils.toArray('.signal-progress span').forEach((bar) => {
+        gsap.to(bar, {
+          width: `${bar.dataset.progress || 100}%`,
+          duration: 1.4,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: bar,
+            start: 'top 92%'
+          }
+        });
+      });
+    }
+
+    const counters = document.querySelectorAll('[data-counter]');
+    const counterObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        const el = entry.target;
+        const target = Number(el.dataset.counter || 0);
+        const suffix = target === 360 ? '°' : target === 12 ? '+' : '';
+        const duration = 1500;
+        const start = performance.now();
+
+        const tick = (now) => {
+          const progress = Math.min((now - start) / duration, 1);
+          const current = Math.round(progress * target);
+          el.textContent = `${current}${suffix}`;
+          if (progress < 1) requestAnimationFrame(tick);
+        };
+
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => counterObserver.observe(counter));
+
+    const tiltCards = document.querySelectorAll('.tilt-card');
+    tiltCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        if (window.matchMedia('(pointer: coarse)').matches) return;
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const midX = rect.width / 2;
+        const midY = rect.height / 2;
+        const rotateX = ((y - midY) / midY) * -4;
+        const rotateY = ((x - midX) / midX) * 4;
+        card.style.transform = `translateY(-8px) rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+      });
+      card.addEventListener('mouseleave', () => {
+        card.style.transform = '';
+      });
+    });
+
+    const pvChartModes = {
+      growth: {
+        label: 'Moc zainstalowana PV w Polsce [GW]',
+        data: [3.9, 7.1, 12.4, 17.1, 20.2],
+        axisLabel: 'GW',
+        value: '20,2 GW',
+        delta: '+3,1 GW r/r',
+        note: 'Rosnące zapotrzebowanie na wykonawstwo'
+      },
+      index: {
+        label: 'Indeks dynamiki rynku PV [2020 = 100]',
+        data: [100, 182, 318, 438, 518],
+        axisLabel: 'pkt',
+        value: '518 pkt',
+        delta: '5,18x vs 2020',
+        note: 'Skumulowana dynamika rozwoju rynku'
+      },
+      pace: {
+        label: 'Roczny przyrost mocy PV [GW]',
+        data: [3.9, 3.2, 5.3, 4.7, 3.1],
+        axisLabel: 'GW',
+        value: '3,1 GW',
+        delta: 'najnowszy roczny przyrost',
+        note: 'Rynek nadal rozwija się wielkoskalowo'
+      }
+    };
+
+    let pvChart;
+    let serviceChart;
+    let executionChart;
+    let chartPulseInterval;
+
+    const updateChartMeta = (mode) => {
+      const config = pvChartModes[mode];
+      const valueEl = document.getElementById('chartHeadlineValue');
+      const deltaEl = document.getElementById('chartHeadlineDelta');
+      const noteEl = document.getElementById('chartHeadlineNote');
+      if (valueEl) valueEl.textContent = config.value;
+      if (deltaEl) deltaEl.textContent = config.delta;
+      if (noteEl) noteEl.textContent = config.note;
+    };
+
+    const setActiveChartMode = (mode) => {
+      if (!pvChart || !pvChartModes[mode]) return;
+      const config = pvChartModes[mode];
+      pvChart.data.datasets[0].label = config.label;
+      pvChart.data.datasets[0].data = config.data;
+      pvChart.options.scales.y.title.text = config.axisLabel;
+      pvChart.update();
+      updateChartMeta(mode);
+      document.querySelectorAll('#chartModeSwitch button').forEach((button) => {
+        button.classList.toggle('active', button.dataset.mode === mode);
+      });
+    };
+
+    const createCharts = () => {
+      const axisColor = 'rgba(255,255,255,0.14)';
+      const labelColor = 'rgba(246,248,250,0.72)';
+      const gridColor = 'rgba(255,255,255,0.08)';
+
+      const pvCtx = document.getElementById('pvGrowthChart');
+      if (pvCtx && window.Chart) {
+        const gradient = pvCtx.getContext('2d').createLinearGradient(0, 0, 0, 320);
+        gradient.addColorStop(0, 'rgba(155,227,22,0.34)');
+        gradient.addColorStop(1, 'rgba(155,227,22,0.02)');
+
+        pvChart = new Chart(pvCtx, {
+          type: 'line',
+          data: {
+            labels: ['2020', '2021', '2022', '2023', '2024'],
+            datasets: [{
+              label: pvChartModes.growth.label,
+              data: pvChartModes.growth.data,
+              borderColor: '#9be316',
+              backgroundColor: gradient,
+              pointBackgroundColor: '#ffffff',
+              pointBorderColor: '#9be316',
+              pointRadius: 5,
+              pointHoverRadius: 7,
+              pointBorderWidth: 2,
+              tension: 0.38,
+              fill: true,
+              borderWidth: 3
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+              intersect: false,
+              mode: 'index'
+            },
+            animation: {
+              duration: 1800,
+              easing: 'easeOutQuart'
+            },
+            plugins: {
+              legend: {
+                labels: {
+                  color: labelColor,
+                  usePointStyle: true,
+                  boxWidth: 10,
+                  boxHeight: 10
+                }
+              },
+              tooltip: {
+                backgroundColor: 'rgba(6, 12, 16, 0.94)',
+                borderColor: 'rgba(255,255,255,0.08)',
+                borderWidth: 1,
+                titleColor: '#fff',
+                bodyColor: '#fff',
+                displayColors: false
+              }
+            },
+            scales: {
+              x: {
+                grid: { color: gridColor },
+                ticks: { color: labelColor }
+              },
+              y: {
+                beginAtZero: true,
+                grid: { color: axisColor },
+                ticks: { color: labelColor },
+                title: {
+                  display: true,
+                  text: pvChartModes.growth.axisLabel,
+                  color: labelColor
+                }
+              }
+            }
+          }
+        });
+
+        updateChartMeta('growth');
+        document.querySelectorAll('#chartModeSwitch button').forEach((button) => {
+          button.addEventListener('click', () => setActiveChartMode(button.dataset.mode));
+        });
+      }
+
+      const mixCtx = document.getElementById('serviceMixChart');
+      if (mixCtx && window.Chart) {
+        serviceChart = new Chart(mixCtx, {
+          type: 'doughnut',
+          data: {
+            labels: ['Analiza i koncepcja', 'Projekt i formalności', 'Wykonawstwo', 'Pomiary i odbiory'],
+            datasets: [{
+              data: [22, 24, 34, 20],
+              backgroundColor: ['#9be316', '#34d25b', '#efc15a', '#81e4ff'],
+              borderColor: 'rgba(4,7,11,0.92)',
+              borderWidth: 6,
+              hoverOffset: 10
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            cutout: '68%',
+            animation: {
+              duration: 1600,
+              easing: 'easeOutQuart'
+            },
+            plugins: {
+              legend: {
+                position: 'bottom',
+                labels: {
+                  color: labelColor,
+                  usePointStyle: true,
+                  boxWidth: 10,
+                  boxHeight: 10,
+                  padding: 18
+                }
+              },
+              tooltip: {
+                backgroundColor: 'rgba(6, 12, 16, 0.94)',
+                borderColor: 'rgba(255,255,255,0.08)',
+                borderWidth: 1,
+                titleColor: '#fff',
+                bodyColor: '#fff'
+              }
+            }
+          }
+        });
+      }
+
+      const executionCtx = document.getElementById('executionStageChart');
+      if (executionCtx && window.Chart) {
+        executionChart = new Chart(executionCtx, {
+          type: 'bar',
+          data: {
+            labels: ['Koncepcja', 'Projekt', 'Realizacja', 'Odbiory'],
+            datasets: [{
+              label: 'Intensywność prac [%]',
+              data: [18, 27, 36, 19],
+              borderRadius: 12,
+              backgroundColor: ['rgba(129,228,255,0.72)', 'rgba(155,227,22,0.74)', 'rgba(52,210,91,0.78)', 'rgba(239,193,90,0.74)'],
+              borderSkipped: false,
+              maxBarThickness: 42
+            }]
+          },
+          options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            animation: {
+              duration: 1600,
+              easing: 'easeOutQuart'
+            },
+            plugins: {
+              legend: {
+                display: false
+              },
+              tooltip: {
+                backgroundColor: 'rgba(6, 12, 16, 0.94)',
+                borderColor: 'rgba(255,255,255,0.08)',
+                borderWidth: 1,
+                titleColor: '#fff',
+                bodyColor: '#fff'
+              }
+            },
+            scales: {
+              x: {
+                grid: { display: false },
+                ticks: { color: labelColor }
+              },
+              y: {
+                beginAtZero: true,
+                grid: { color: axisColor },
+                ticks: { color: labelColor },
+                suggestedMax: 40
+              }
+            }
+          }
+        });
+      }
+
+      if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        let direction = 1;
+        chartPulseInterval = window.setInterval(() => {
+          if (document.hidden) return;
+          if (serviceChart) {
+            serviceChart.options.rotation += 0.015 * direction;
+            serviceChart.update('none');
+          }
+          if (executionChart) {
+            const values = executionChart.data.datasets[0].data;
+            executionChart.data.datasets[0].data = values.map((value, index) => {
+              const modifiers = [0.12, -0.1, 0.16, -0.08];
+              return Math.max(12, Math.min(40, value + modifiers[index] * direction));
+            });
+            executionChart.update('none');
+          }
+          direction *= -1;
+        }, 2200);
+      }
+    };
+
+    const chartSection = document.getElementById('dane');
+    let chartsCreated = false;
+    const chartObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !chartsCreated) {
+          createCharts();
+          chartsCreated = true;
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.25 });
+    if (chartSection) chartObserver.observe(chartSection);
+
+    const contactForm = document.getElementById('contactForm');
+    const formNote = document.getElementById('formNote');
+
+    contactForm?.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const subject = document.getElementById('subject').value.trim();
+      const message = document.getElementById('message').value.trim();
+
+      const phoneOk = /^[+()\d\s-]{7,}$/.test(phone);
+      if (!name || !phoneOk || !email || !subject || !message) {
+        formNote.textContent = 'Uzupełnij wszystkie pola. Numer telefonu powinien zawierać co najmniej 7 cyfr lub znaków numeracyjnych.';
+        formNote.style.color = '#ffb4b4';
+        return;
+      }
+
+      const body = [
+        `Imię i nazwisko / firma: ${name}`,
+        `Telefon: ${phone}`,
+        `E-mail: ${email}`,
+        '',
+        'Treść zapytania:',
+        message,
+        '',
+        '---',
+        'Wiadomość wygenerowana automatycznie ze strony Emergy One.'
+      ].join('\n');
+
+      const mailto = `mailto:biuro@emergy.pl?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      window.location.href = mailto;
+      formNote.textContent = 'Gotowe — otwieram klienta pocztowego z przygotowaną wiadomością.';
+      formNote.style.color = 'rgba(246,248,250,0.72)';
+    });
+
+    const canvas = document.getElementById('hero-particles');
+    const ctx = canvas?.getContext('2d');
+    let particles = [];
+    let particleAnimationId = null;
+
+    const getCanvasSize = () => ({
+      width: window.innerWidth,
+      height: window.innerHeight
+    });
+
+    const resizeCanvas = () => {
+      if (!canvas || !ctx) return;
+      const { width, height } = getCanvasSize();
+      const dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.style.width = `${width}px`;
+      canvas.style.height = `${height}px`;
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+      initParticles();
+    };
+
+    const initParticles = () => {
+      if (!canvas) return;
+      const { width, height } = getCanvasSize();
+      const count = window.innerWidth < 768 ? 34 : 68;
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random() * width,
+        y: Math.random() * height,
+        vx: (Math.random() - 0.5) * 0.35,
+        vy: (Math.random() - 0.5) * 0.35,
+        r: Math.random() * 1.8 + 0.6
+      }));
+    };
+
+    const drawParticles = () => {
+      if (!canvas || !ctx) return;
+      const { width, height } = getCanvasSize();
+      ctx.clearRect(0, 0, width, height);
+
+      particles.forEach((p, i) => {
+        p.x += p.vx;
+        p.y += p.vy;
+
+        if (p.x < 0 || p.x > width) p.vx *= -1;
+        if (p.y < 0 || p.y > height) p.vy *= -1;
+
+        ctx.beginPath();
+        ctx.fillStyle = 'rgba(255,255,255,0.58)';
+        ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fill();
+
+        for (let j = i + 1; j < particles.length; j++) {
+          const other = particles[j];
+          const dx = p.x - other.x;
+          const dy = p.y - other.y;
+          const distance = Math.sqrt(dx * dx + dy * dy);
+          if (distance < 120) {
+            ctx.beginPath();
+            ctx.strokeStyle = `rgba(155,227,22,${0.12 - distance / 1200})`;
+            ctx.lineWidth = 1;
+            ctx.moveTo(p.x, p.y);
+            ctx.lineTo(other.x, other.y);
+            ctx.stroke();
+          }
+        }
+      });
+
+      particleAnimationId = requestAnimationFrame(drawParticles);
+    };
+
+    if (canvas && ctx && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      resizeCanvas();
+      drawParticles();
+      window.addEventListener('resize', resizeCanvas, { passive: true });
+      window.addEventListener('beforeunload', () => {
+        cancelAnimationFrame(particleAnimationId);
+        if (chartPulseInterval) clearInterval(chartPulseInterval);
+      });
+    }
+  </script>
+</body>
+</html>
