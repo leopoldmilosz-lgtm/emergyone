@@ -1421,19 +1421,33 @@
         touch-action: none;
       }
 
-      .site-header.menu-open {
+      .site-header {
         z-index: 260;
       }
 
-      .site-header.menu-open .nav-shell {
-        background: rgba(6, 12, 17, 0.98);
-        border-color: rgba(255,255,255,0.12);
-        box-shadow: 0 22px 60px rgba(0,0,0,0.34);
+      .site-header.menu-open {
+        z-index: 260;
       }
 
       .nav-shell {
         padding: 12px 14px;
         overflow: visible;
+        background: rgba(6, 12, 17, 0.96);
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background-clip: padding-box;
+        box-shadow: 0 22px 60px rgba(0,0,0,0.34);
+      }
+
+      .site-header.menu-open .nav-shell {
+        background: rgba(6, 12, 17, 0.96);
+        border-color: rgba(255,255,255,0.12);
+        box-shadow: 0 22px 60px rgba(0,0,0,0.34);
+      }
+
+      .nav-shell::before,
+      .nav-shell::after {
+        display: none;
       }
 
       .brand img { width: 150px; }
@@ -1442,21 +1456,24 @@
         display: inline-grid;
         place-items: center;
         position: relative;
-        z-index: 270;
+        z-index: 320;
+        -webkit-tap-highlight-color: transparent;
       }
 
       .mobile-backdrop {
         display: block;
         position: fixed;
         inset: 0;
-        background: rgba(3, 8, 12, 0.82);
-        backdrop-filter: blur(12px);
-        -webkit-backdrop-filter: blur(12px);
+        background: rgba(3, 8, 12, 0.78);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transition: opacity 0.28s ease, visibility 0.28s ease;
-        z-index: 240;
+        transition: opacity 0.22s ease, visibility 0.22s ease;
+        z-index: 220;
+        border: 0;
+        padding: 0;
       }
 
       .mobile-backdrop.open {
@@ -1467,16 +1484,16 @@
 
       .mobile-menu {
         position: fixed;
-        inset: 0;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        padding: calc(env(safe-area-inset-top, 0px) + 92px) 16px 20px;
+        top: calc(env(safe-area-inset-top, 0px) + 92px);
+        left: 16px;
+        right: 16px;
+        bottom: 16px;
+        display: block;
         opacity: 0;
         visibility: hidden;
         pointer-events: none;
-        transition: opacity 0.28s ease, visibility 0.28s ease;
-        z-index: 250;
+        z-index: 240;
+        transition: opacity 0.22s ease, visibility 0.22s ease;
       }
 
       .mobile-menu.open {
@@ -1487,27 +1504,18 @@
 
       .mobile-menu-panel {
         width: 100%;
-        max-height: min(72vh, calc(100vh - 128px));
+        max-height: 100%;
         overflow-y: auto;
         -webkit-overflow-scrolling: touch;
+        overscroll-behavior: contain;
         padding: 14px;
         border-radius: 28px;
         border: 1px solid rgba(255,255,255,0.10);
-        background: linear-gradient(180deg, rgba(5,11,17,0.995), rgba(4,9,14,0.985));
-        backdrop-filter: blur(28px) saturate(155%);
-        -webkit-backdrop-filter: blur(28px) saturate(155%);
+        background: linear-gradient(180deg, rgba(5,11,17,0.98), rgba(4,9,14,0.98));
         display: flex;
         flex-direction: column;
         gap: 12px;
         box-shadow: 0 30px 80px rgba(0,0,0,0.42);
-        transform: translateY(-12px) scale(0.985);
-        opacity: 0;
-        transition: transform 0.28s ease, opacity 0.28s ease;
-      }
-
-      .mobile-menu.open .mobile-menu-panel {
-        transform: translateY(0) scale(1);
-        opacity: 1;
       }
 
       .mobile-menu a,
@@ -1645,25 +1653,25 @@
 
       <div class="nav-actions">
         <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
-        <button class="mobile-toggle" id="mobileToggle" aria-label="Otwórz menu" aria-expanded="false">
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Otwórz menu" aria-expanded="false" type="button">
           <i class="fa-solid fa-bars"></i>
         </button>
       </div>
-
-      <div class="mobile-menu" id="mobileMenu" aria-label="Menu mobilne">
-        <div class="mobile-menu-panel">
-          <a href="#o-firmie">O firmie</a>
-          <a href="#pv">Fotowoltaika</a>
-          <a href="#energetyka">Sieci SN i nn</a>
-          <a href="#dane">Dane branżowe</a>
-          <a href="#realizacje">Portfolio</a>
-          <a href="#kontakt">Kontakt</a>
-          <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
-        </div>
-      </div>
     </div>
   </header>
-  <button class="mobile-backdrop" id="mobileBackdrop" aria-label="Zamknij menu" aria-hidden="true"></button>
+
+  <button class="mobile-backdrop" id="mobileBackdrop" aria-label="Zamknij menu" aria-hidden="true" type="button"></button>
+  <nav class="mobile-menu" id="mobileMenu" aria-label="Menu mobilne">
+    <div class="mobile-menu-panel">
+      <a href="#o-firmie">O firmie</a>
+      <a href="#pv">Fotowoltaika</a>
+      <a href="#energetyka">Sieci SN i nn</a>
+      <a href="#dane">Dane branżowe</a>
+      <a href="#realizacje">Portfolio</a>
+      <a href="#kontakt">Kontakt</a>
+      <a href="#kontakt" class="btn btn-primary">Skontaktuj się</a>
+    </div>
+  </nav>
 
   <main id="top">
     <section class="hero section">
@@ -2367,13 +2375,24 @@
       mobileToggle.innerHTML = '<i class="fa-solid fa-bars"></i>';
     };
 
-    mobileToggle?.addEventListener('click', () => {
+    const handleMobileToggle = (event) => {
+      event?.preventDefault?.();
+      event?.stopPropagation?.();
       const isOpen = mobileMenu.classList.contains('open');
       if (isOpen) closeMobileMenu();
       else openMobileMenu();
-    });
+    };
 
-    mobileBackdrop?.addEventListener('click', closeMobileMenu);
+    mobileToggle?.addEventListener('click', handleMobileToggle);
+    mobileToggle?.addEventListener('touchend', handleMobileToggle, { passive: false });
+
+    const handleBackdropClose = (event) => {
+      event?.preventDefault?.();
+      closeMobileMenu();
+    };
+
+    mobileBackdrop?.addEventListener('click', handleBackdropClose);
+    mobileBackdrop?.addEventListener('touchend', handleBackdropClose, { passive: false });
 
     document.addEventListener('keydown', (event) => {
       if (event.key === 'Escape' && mobileMenu.classList.contains('open')) {
@@ -2385,6 +2404,9 @@
       link.addEventListener('click', () => {
         closeMobileMenu();
       });
+      link.addEventListener('touchend', () => {
+        closeMobileMenu();
+      }, { passive: true });
     });
 
     window.addEventListener('resize', () => {
